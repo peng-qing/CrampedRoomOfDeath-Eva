@@ -123,6 +123,7 @@ export class PlayerStateMachineManager extends Component {
             const recoverIdle = [
                 FSM_STATE.TURN_LEFT,
                 FSM_STATE.TURN_RIGHT,
+                FSM_STATE.BLOCK_FRONT,
             ];
             if (recoverIdle.includes(this.curState)) {
                 this.curState = FSM_STATE.IDLE;

@@ -1,0 +1,37 @@
+{
+	"name": "evajs",
+	"version": "1.0.0",
+	"main": "index.ts",
+	"scripts": {
+		"dev": "cross-env NODE_ENV=development webpack-dev-server",
+		"build": "cross-env NODE_ENV=production webpack"
+	},
+	"author": "pengqq",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@eva/eva.js": "^1.2.8"
+	},
+	"devDependencies": {
+		"@eva/plugin-renderer": "^1.2.8",
+		"@eva/plugin-renderer-event": "^1.2.8",
+		"@eva/plugin-renderer-graphics": "^1.2.8",
+		"@eva/plugin-renderer-img": "^1.2.8",
+		"@eva/plugin-renderer-render": "^1.2.8",
+		"@eva/plugin-renderer-sprite": "^1.2.8",
+		"@eva/plugin-renderer-sprite-animation": "^1.2.8",
+		"@eva/plugin-renderer-text": "^1.2.8",
+		"@eva/plugin-stats": "^1.2.8",
+		"@eva/plugin-transition": "^1.2.8",
+		"clean-webpack-plugin": "^4.0.0",
+		"copy-webpack-plugin": "^13.0.0",
+		"cross-env": "^7.0.3",
+		"esbuild-loader": "^4.3.0",
+		"html-webpack-plugin": "^5.6.3",
+		"path-browserify": "^1.0.1",
+		"url-polyfill": "^1.1.13",
+		"webpack": "^5.99.9",
+		"webpack-cli": "^6.0.1",
+		"webpack-dev-server": "^5.2.2"
+	}
+}

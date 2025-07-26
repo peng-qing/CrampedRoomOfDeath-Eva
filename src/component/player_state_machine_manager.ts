@@ -96,7 +96,7 @@ export class PlayerStateMachineManager extends Component {
             value: DIRECTION.TOP,
         });
         // 前向碰撞
-        this.params.set(FSM_STATE.DIRECTION, {
+        this.params.set(FSM_STATE.BLOCK_FRONT, {
             type: FSM_PARAM_TYPE.SIGNAL,
             value: false,
         });
@@ -104,27 +104,14 @@ export class PlayerStateMachineManager extends Component {
 
     /** 初始化状态表 */
     initStates() {
-        const frameAnimation = this.gameObject.getComponent<SpriteAnimation>(SpriteAnimation.componentName);
         // 空闲
-        this.states.set(
-            FSM_STATE.IDLE,
-            new IdleState(this, frameAnimation)
-        );
+        this.states.set(FSM_STATE.IDLE, new IdleState(this));
         // 左转
-        this.states.set(
-            FSM_STATE.TURN_LEFT,
-            new TurnLeftState(this, frameAnimation)
-        );
+        this.states.set(FSM_STATE.TURN_LEFT, new TurnLeftState(this));
         // 右转
-        this.states.set(
-            FSM_STATE.TURN_RIGHT,
-            new TurnRightState(this, frameAnimation)
-        )
+        this.states.set(FSM_STATE.TURN_RIGHT, new TurnRightState(this));
         // 前向碰撞
-        this.states.set(
-            FSM_STATE.BLOCK_FRONT,
-            new BlockFrontState(this, frameAnimation),
-        );
+        this.states.set(FSM_STATE.BLOCK_FRONT, new BlockFrontState(this));
     }
 
     /** 初始化帧动画事件 */

@@ -1,6 +1,4 @@
 
-import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
-
 import { DIRECTION } from "../enum";
 import { FSM_STATE } from "./state";
 import { SubState } from "./multi_state";
@@ -9,8 +7,8 @@ import { PlayerStateMachineManager } from "../component/player_state_machine_man
 
 // 待机状态 继承自子状态机
 export class IdleState extends SubState {
-    constructor(fsm: PlayerStateMachineManager, frameAnimation: SpriteAnimation) {
-        super(fsm, frameAnimation);
+    constructor(fsm: PlayerStateMachineManager) {
+        super(fsm);
         this.init();
     }
 
@@ -22,18 +20,7 @@ export class IdleState extends SubState {
         this.states.set(FSM_STATE.IDLE_RIGHT, new FrameAnimationState(this.frameAnimation, "player_idle_right"));
     }
 
-    /** 执行状态 */
-    run(): void {
-        const curDirection = this.fsm.getParams(FSM_STATE.DIRECTION);
-        if (!curDirection) {
-            return;
-        }
-        const state = this.toState(curDirection.value);
-        const executor = this.states.get(state);
-        executor?.run();
-    }
-
-    toState(direction: any): FSM_STATE {
+    toRunState(direction: DIRECTION): FSM_STATE {
         switch (direction) {
             case DIRECTION.TOP:
                 return FSM_STATE.IDLE_TOP;

@@ -165,6 +165,7 @@ export class PlayerStateMachineManager extends Component {
             case FSM_STATE.IDLE:
             case FSM_STATE.TURN_LEFT:
             case FSM_STATE.TURN_RIGHT:
+            case FSM_STATE.BLOCK_FRONT:
                 if (this.params.get(FSM_STATE.TURN_LEFT)?.value) {
                     this.curState = FSM_STATE.TURN_LEFT;
                 }
@@ -173,6 +174,9 @@ export class PlayerStateMachineManager extends Component {
                 }
                 else if (this.params.get(FSM_STATE.IDLE)?.value) {
                     this.curState = FSM_STATE.IDLE;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_FRONT)?.value) {
+                    this.curState = FSM_STATE.BLOCK_FRONT;
                 }
                 else {
                     this.curState = this.curState;

@@ -93,13 +93,12 @@ export class PlayerManager extends Component {
         const weaponNexyY = y - 1;
         const weaponNexyX = x - 1;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -111,13 +110,12 @@ export class PlayerManager extends Component {
         const weaponNexyY = y - 1;
         const weaponNexyX = x + 1;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -128,14 +126,14 @@ export class PlayerManager extends Component {
         const playerNextY = y - 1;
         const weaponNexyY = y - 2;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[x][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[x][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
-        }
+        this.state = FSM_STATE.BLOCK_FRONT;
         return false;
     }
     // 朝下 按上
@@ -145,13 +143,12 @@ export class PlayerManager extends Component {
         const playerNextY = y - 1;
         const weaponNexyY = y;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[x][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[x][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -162,14 +159,14 @@ export class PlayerManager extends Component {
         const playerNextX = x - 1;
         const weaponNexyX = x - 2;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][y];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][y];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
-        }
+        this.state = FSM_STATE.BLOCK_FRONT;
         return false;
     }
     // 朝右 按左
@@ -179,13 +176,12 @@ export class PlayerManager extends Component {
         const playerNextX = x - 1;
         const weaponNexyX = x;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][y];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][y];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -196,13 +192,12 @@ export class PlayerManager extends Component {
         const playerNextX = x - 1;
         const weaponNexyX = x - 1, weaponNexyY = y - 1;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -213,13 +208,12 @@ export class PlayerManager extends Component {
         const playerNextX = x - 1;
         const weaponNexyX = x - 1, weaponNexyY = y + 1;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -229,14 +223,13 @@ export class PlayerManager extends Component {
         const { x, y } = this.targetPos;
         const playerNextX = x + 1;
         const weaponNexyX = x;
-        // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][y];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        // 超地图边
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][y];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -247,14 +240,14 @@ export class PlayerManager extends Component {
         const playerNextX = x + 1;
         const weaponNexyX = x + 2;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][y];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][y];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
-        }
+        this.state = FSM_STATE.BLOCK_FRONT;
         return false;
     }
     // 朝上 按右
@@ -264,13 +257,12 @@ export class PlayerManager extends Component {
         const playerNextX = x + 1;
         const weaponNexyX = x + 1, weaponNexyY = y - 1;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -281,13 +273,12 @@ export class PlayerManager extends Component {
         const playerNextX = x + 1;
         const weaponNexyX = x + 1, weaponNexyY = y + 1;
         // 超地图边界
-        if (playerNextX < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[playerNextX][y];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextX >= 0) {
+            const playerNextTile = tileInfo[playerNextX][y];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -298,13 +289,12 @@ export class PlayerManager extends Component {
         const playerNextY = y + 1;
         const weaponNexyX = x - 1, weaponNexyY = y + 1;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -315,13 +305,12 @@ export class PlayerManager extends Component {
         const playerNextY = y + 1;
         const weaponNexyX = x + 1, weaponNexyY = y + 1;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[weaponNexyX][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -332,13 +321,12 @@ export class PlayerManager extends Component {
         const playerNextY = y + 1;
         const weaponNexyY = y + 1;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
-        }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[x][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[x][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
         return false;
     }
@@ -349,14 +337,14 @@ export class PlayerManager extends Component {
         const playerNextY = y + 1;
         const weaponNexyY = y + 2;
         // 超地图边界
-        if (playerNextY < 0) {
-            return false;
+        if (playerNextY >= 0) {
+            const playerNextTile = tileInfo[x][playerNextY];
+            const weaponNextTile = tileInfo[x][weaponNexyY];
+            if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
+                return true;
+            }
         }
-        const playerNextTile = tileInfo[x][playerNextY];
-        const weaponNextTile = tileInfo[x][weaponNexyY];
-        if (playerNextTile && playerNextTile.isMoveable && (!weaponNextTile || weaponNextTile.isRotatable)) {
-            return true;
-        }
+        this.state = FSM_STATE.BLOCK_FRONT;
         return false;
     }
     // 朝左 按左转

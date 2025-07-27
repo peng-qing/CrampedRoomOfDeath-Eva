@@ -22,8 +22,6 @@ const gameCanvas = document.querySelector("#gameCanvas") as HTMLCanvasElement;
 // 加载所有资源进来
 resource.addResource(allResource);
 
-console.log(allResource);
-
 // 游戏实例
 export const game = new Game(
     {

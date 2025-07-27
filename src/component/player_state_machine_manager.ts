@@ -5,8 +5,11 @@ import { DIRECTION } from "../enum";
 import { IdleState } from "../state/idle_state";
 import { TurnLeftState } from "../state/turn_left_state";
 import { TurnRightState } from "../state/turn_right_state";
+import { BlockBackState } from "../state/block_back_state";
 import { BlockFrontState } from "../state/block_front_state";
 import { FSM_PARAM_TYPE, FSM_STATE, IState } from "../state/state";
+import { BlockTurnLeftState } from "../state/block_turn_left_state";
+import { BlockTurnRightState } from "../state/block_turn_right._state";
 
 // 帧动画速度
 const ANIMATION_SPEED = 1000 / 8;
@@ -100,6 +103,21 @@ export class PlayerStateMachineManager extends Component {
             type: FSM_PARAM_TYPE.SIGNAL,
             value: false,
         });
+        // 后向碰撞
+        this.params.set(FSM_STATE.BLOCK_BACK, {
+            type: FSM_PARAM_TYPE.SIGNAL,
+            value: false,
+        });
+        // 左转碰撞
+        this.params.set(FSM_STATE.BLOCK_TURN_LEFT, {
+            type: FSM_PARAM_TYPE.SIGNAL,
+            value: false,
+        });
+        // 右转碰撞
+        this.params.set(FSM_STATE.BLOCK_TURN_RIGHT, {
+            type: FSM_PARAM_TYPE.SIGNAL,
+            value: false,
+        });
     }
 
     /** 初始化状态表 */
@@ -112,6 +130,12 @@ export class PlayerStateMachineManager extends Component {
         this.states.set(FSM_STATE.TURN_RIGHT, new TurnRightState(this));
         // 前向碰撞
         this.states.set(FSM_STATE.BLOCK_FRONT, new BlockFrontState(this));
+        // 后向碰撞
+        this.states.set(FSM_STATE.BLOCK_BACK, new BlockBackState(this));
+        // 左转向碰撞
+        this.states.set(FSM_STATE.BLOCK_TURN_LEFT, new BlockTurnLeftState(this));
+        // 右转向碰撞
+        this.states.set(FSM_STATE.BLOCK_TURN_RIGHT, new BlockTurnRightState(this));
     }
 
     /** 初始化帧动画事件 */
@@ -124,6 +148,9 @@ export class PlayerStateMachineManager extends Component {
                 FSM_STATE.TURN_LEFT,
                 FSM_STATE.TURN_RIGHT,
                 FSM_STATE.BLOCK_FRONT,
+                FSM_STATE.BLOCK_BACK,
+                FSM_STATE.BLOCK_TURN_LEFT,
+                FSM_STATE.BLOCK_TURN_RIGHT,
             ];
             if (recoverIdle.includes(this.curState)) {
                 this.curState = FSM_STATE.IDLE;
@@ -167,6 +194,9 @@ export class PlayerStateMachineManager extends Component {
             case FSM_STATE.TURN_LEFT:
             case FSM_STATE.TURN_RIGHT:
             case FSM_STATE.BLOCK_FRONT:
+            case FSM_STATE.BLOCK_BACK:
+            case FSM_STATE.BLOCK_TURN_LEFT:
+            case FSM_STATE.BLOCK_TURN_RIGHT:
                 if (this.params.get(FSM_STATE.TURN_LEFT)?.value) {
                     this.curState = FSM_STATE.TURN_LEFT;
                 }
@@ -178,6 +208,15 @@ export class PlayerStateMachineManager extends Component {
                 }
                 else if (this.params.get(FSM_STATE.BLOCK_FRONT)?.value) {
                     this.curState = FSM_STATE.BLOCK_FRONT;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_BACK)?.value) {
+                    this.curState = FSM_STATE.BLOCK_BACK;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_TURN_LEFT)?.value) {
+                    this.curState = FSM_STATE.BLOCK_TURN_LEFT;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_TURN_RIGHT)?.value) {
+                    this.curState = FSM_STATE.BLOCK_TURN_RIGHT;
                 }
                 else {
                     this.curState = this.curState;

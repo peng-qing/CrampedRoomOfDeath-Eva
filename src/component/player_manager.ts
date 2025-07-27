@@ -150,6 +150,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_BACK;
         return false;
     }
     // 朝左 按左
@@ -183,6 +184,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_BACK;
         return false;
     }
     // 朝上 按左
@@ -231,6 +233,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_BACK;
         return false;
     }
     // 朝右 按右
@@ -328,6 +331,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_BACK;
         return false;
     }
     // 朝下 按下
@@ -358,6 +362,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_LEFT;
                 return false;
             }
         }
@@ -374,6 +379,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_LEFT;
                 return false;
             }
         }
@@ -390,6 +396,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_LEFT;
                 return false;
             }
         }
@@ -406,6 +413,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_LEFT;
                 return false;
             }
         }
@@ -422,6 +430,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_RIGHT;
                 return false;
             }
         }
@@ -438,6 +447,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_RIGHT;
                 return false;
             }
         }
@@ -454,6 +464,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_RIGHT;
                 return false;
             }
         }
@@ -470,6 +481,7 @@ export class PlayerManager extends Component {
         for (const [weaponNexyX, weaponNexyY] of weaponAllPos) {
             const nextTile = tileInfo[weaponNexyX][weaponNexyY];
             if (nextTile && !nextTile.isRotatable) {
+                this.state = FSM_STATE.BLOCK_TURN_RIGHT;
                 return false;
             }
         }

@@ -33,6 +33,7 @@ export class FrameAnimationState implements IState {
     run(): void {
         // 给动画组件资源路径
         this.frameAnimation.resource = this.resource;
+
         // 如果直接播放 会存在闪烁的bug
         // 因为evajs 采用的是依赖收集的方式 对应动画资源的修改加载并不是立即执行
         // 同时播放完成会跳转回第一帧... 所以需要调整其执行时机
@@ -41,6 +42,6 @@ export class FrameAnimationState implements IState {
         requestAnimationFrame(() => {
             // 播放 其实可以是 undefined 传入, 但是不能为0, 0不会无限播放
             this.frameAnimation.play(this.playCount);
-        })
+        });
     }
 }

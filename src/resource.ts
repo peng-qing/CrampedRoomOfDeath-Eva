@@ -451,9 +451,126 @@ export default [
         },
         type: RESOURCE_TYPE.SPRITE_ANIMATION
     },
-
-
-
+    {
+        name: "player_block_left_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_left_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_left_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_left_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_left_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_left_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_left_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_left_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_left_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_left_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_left_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_left_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_right_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_right_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_right_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_right_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_right_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_right_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_right_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_right_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_right_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_block_right_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/block_right_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/block_right_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
 
 
     // {
@@ -787,126 +904,7 @@ export default [
     //     type: RESOURCE_TYPE.SPRITE_ANIMATION
     // },
 
-    // {
-    //     name: "player_block_left_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_left_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_left_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_left_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_left_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_left_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_left_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_left_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_left_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_left_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_left_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_left_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_right_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_right_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_right_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_right_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_right_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_right_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_right_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_right_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_right_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_block_right_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/block_right_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/block_right_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
+
 
 
     // {

@@ -100,6 +100,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_RIGHT;
         return false;
     }
     // 朝右 按上
@@ -117,6 +118,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_LEFT;
         return false;
     }
     // 朝上 按上
@@ -201,6 +203,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_LEFT;
         return false;
     }
     // 朝下 按左
@@ -217,6 +220,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_RIGHT;
         return false;
     }
     // 朝左 按右
@@ -267,6 +271,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_RIGHT;
         return false;
     }
     // 朝下 按右
@@ -283,6 +288,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_LEFT;
         return false;
     }
     // 朝左 按下
@@ -299,6 +305,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_LEFT;
         return false;
     }
     // 朝右 按下
@@ -315,6 +322,7 @@ export class PlayerManager extends Component {
                 return true;
             }
         }
+        this.state = FSM_STATE.BLOCK_RIGHT;
         return false;
     }
     // 朝上 按下

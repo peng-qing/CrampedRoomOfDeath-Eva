@@ -7,6 +7,8 @@ import { TurnLeftState } from "../state/turn_left_state";
 import { TurnRightState } from "../state/turn_right_state";
 import { BlockBackState } from "../state/block_back_state";
 import { BlockFrontState } from "../state/block_front_state";
+import { BlockLeftState } from "../state/block_left_state";
+import { BlockRightState } from "../state/block_right_state";
 import { FSM_PARAM_TYPE, FSM_STATE, IState } from "../state/state";
 import { BlockTurnLeftState } from "../state/block_turn_left_state";
 import { BlockTurnRightState } from "../state/block_turn_right._state";
@@ -75,48 +77,28 @@ export class PlayerStateMachineManager extends Component {
 
     /** 初始化参数表 */
     initParams() {
-        // 待机
-        this.params.set(FSM_STATE.IDLE, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
-
-        // 左转
-        this.params.set(FSM_STATE.TURN_LEFT, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
-
-        // 右转
-        this.params.set(FSM_STATE.TURN_RIGHT, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
+        const signals = [
+            FSM_STATE.IDLE,                 // 待机
+            FSM_STATE.TURN_LEFT,            // 左转
+            FSM_STATE.TURN_RIGHT,           // 右转
+            FSM_STATE.BLOCK_FRONT,          // 前向碰撞
+            FSM_STATE.BLOCK_BACK,           // 后向碰撞
+            FSM_STATE.BLOCK_LEFT,           // 左侧碰撞
+            FSM_STATE.BLOCK_RIGHT,          // 右侧碰撞
+            FSM_STATE.BLOCK_TURN_LEFT,      // 左转碰撞
+            FSM_STATE.BLOCK_TURN_RIGHT,     // 右转碰撞
+        ];
+        for (const state of signals) {
+            this.params.set(state, {
+                type: FSM_PARAM_TYPE.SIGNAL,
+                value: false,
+            });
+        }
 
         // 朝向
         this.params.set(FSM_STATE.DIRECTION, {
             type: FSM_PARAM_TYPE.STATUS,
             value: DIRECTION.TOP,
-        });
-        // 前向碰撞
-        this.params.set(FSM_STATE.BLOCK_FRONT, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
-        // 后向碰撞
-        this.params.set(FSM_STATE.BLOCK_BACK, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
-        // 左转碰撞
-        this.params.set(FSM_STATE.BLOCK_TURN_LEFT, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
-        });
-        // 右转碰撞
-        this.params.set(FSM_STATE.BLOCK_TURN_RIGHT, {
-            type: FSM_PARAM_TYPE.SIGNAL,
-            value: false,
         });
     }
 
@@ -132,6 +114,10 @@ export class PlayerStateMachineManager extends Component {
         this.states.set(FSM_STATE.BLOCK_FRONT, new BlockFrontState(this));
         // 后向碰撞
         this.states.set(FSM_STATE.BLOCK_BACK, new BlockBackState(this));
+        // 左侧碰撞
+        this.states.set(FSM_STATE.BLOCK_LEFT, new BlockLeftState(this));
+        // 右侧碰撞
+        this.states.set(FSM_STATE.BLOCK_RIGHT, new BlockRightState(this));
         // 左转向碰撞
         this.states.set(FSM_STATE.BLOCK_TURN_LEFT, new BlockTurnLeftState(this));
         // 右转向碰撞
@@ -149,6 +135,8 @@ export class PlayerStateMachineManager extends Component {
                 FSM_STATE.TURN_RIGHT,
                 FSM_STATE.BLOCK_FRONT,
                 FSM_STATE.BLOCK_BACK,
+                FSM_STATE.BLOCK_LEFT,
+                FSM_STATE.BLOCK_RIGHT,
                 FSM_STATE.BLOCK_TURN_LEFT,
                 FSM_STATE.BLOCK_TURN_RIGHT,
             ];
@@ -195,6 +183,8 @@ export class PlayerStateMachineManager extends Component {
             case FSM_STATE.TURN_RIGHT:
             case FSM_STATE.BLOCK_FRONT:
             case FSM_STATE.BLOCK_BACK:
+            case FSM_STATE.BLOCK_LEFT:
+            case FSM_STATE.BLOCK_RIGHT:
             case FSM_STATE.BLOCK_TURN_LEFT:
             case FSM_STATE.BLOCK_TURN_RIGHT:
                 if (this.params.get(FSM_STATE.TURN_LEFT)?.value) {
@@ -211,6 +201,12 @@ export class PlayerStateMachineManager extends Component {
                 }
                 else if (this.params.get(FSM_STATE.BLOCK_BACK)?.value) {
                     this.curState = FSM_STATE.BLOCK_BACK;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_LEFT)?.value) {
+                    this.curState = FSM_STATE.BLOCK_LEFT;
+                }
+                else if (this.params.get(FSM_STATE.BLOCK_RIGHT)?.value) {
+                    this.curState = FSM_STATE.BLOCK_RIGHT;
                 }
                 else if (this.params.get(FSM_STATE.BLOCK_TURN_LEFT)?.value) {
                     this.curState = FSM_STATE.BLOCK_TURN_LEFT;

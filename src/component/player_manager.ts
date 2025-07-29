@@ -1,63 +1,29 @@
-import { Component } from "@eva/eva.js";
-
+import { IEntity } from "../levels";
 import { FSM_STATE } from "../state/state";
 import { EventManager } from "../managers/event_manager";
+import { EntityComponent } from "../base/entity_component";
+import { EVENT_TYPE, BUTTON_ACTION, DIRECTION } from "../enum";
 import { GlobalDataManager } from "../managers/global_data_manager";
 import { PlayerStateMachineManager } from "./player_state_machine_manager";
-import { EVENT_TYPE, BUTTON_ACTION, TILE_WIDTH, TILE_HEIGHT, DIRECTION } from "../enum";
-
-interface IPos {
-    x: number,
-    y: number,
-}
 
 // 玩家管理器
-export class PlayerManager extends Component {
+export class PlayerManager extends EntityComponent {
     // 组件名
     static componentName = "PlayerManager";
 
-    // 当前位置
-    curPos: IPos = {
-        x: 0,
-        y: 0,
-    }
-    // 目标位置
-    targetPos: IPos = {
-        x: 0,
-        y: 0,
-    }
-    /** 移动速度 */
+    // 写死的速度
     readonly speed: number = 0.1;
-    /** 是否移动中 */
-    private isMoving: boolean = false;
-    /** 角色朝向 */
-    private direction_: DIRECTION = DIRECTION.TOP;
-    /** 状态 */
-    private state_: FSM_STATE = FSM_STATE.IDLE;
-    /** 状态机 */
-    fsm: PlayerStateMachineManager | undefined;
-
-    constructor() { super(); }
+    constructor(entity: IEntity) {
+        super(entity);
+    }
 
     // 生命周期函数 初始化
-    init(): void {
-        // 重置数据
-        this.curPos = {
-            x: 2,
-            y: 8,
-        }
-        this.targetPos = {
-            x: 2,
-            y: 8,
-        }
-        this.isMoving = false;
-        this.direction = DIRECTION.TOP;
+    init(entity: IEntity): void {
+        // 务必优先初始化状态机
         if (!this.fsm) {
             this.fsm = this.gameObject.addComponent(new PlayerStateMachineManager());
-            // 初始化 Idle 状态
-            this.state = FSM_STATE.IDLE;
         }
-
+        super.init(entity);
         // 绑定移动事件
         EventManager.instance.register(EVENT_TYPE.PLAYER_CONTROL, this.onInput, this);
     }
@@ -566,62 +532,4 @@ export class PlayerManager extends Component {
         }
     }
 
-    // 生命周期函数 帧循环
-    update(): void {
-        this._frameMoveForSpeed();
-        this._frameMoveForTransform();
-    }
-
-    // 帧移动 速度控制
-    _frameMoveForSpeed() {
-        if (!this.isMoving || this.speed <= 0) {
-            // 未移动 或 速度为0
-            return;
-        }
-        // 计算移动距离 这里并不是真的移动 真正的移动一定是调整GameObject的位置
-        // x
-        if (this.curPos.x < this.targetPos.x) {
-            this.curPos.x += this.speed;
-        } else if (this.curPos.x > this.targetPos.x) {
-            this.curPos.x -= this.speed;
-        }
-        // y
-        if (this.curPos.y < this.targetPos.y) {
-            this.curPos.y += this.speed;
-        } else if (this.curPos.y > this.targetPos.y) {
-            this.curPos.y -= this.speed;
-        }
-        // 判断是否到达目标位置 如果很靠近了就视为到达 避免抽搐
-        if (Math.abs(this.curPos.x - this.targetPos.x) < 0.01 && Math.abs(this.curPos.y - this.targetPos.y) < 0.01) {
-            this.curPos.x = this.targetPos.x;
-            this.curPos.y = this.targetPos.y;
-            this.isMoving = false;
-        }
-    }
-
-    // 帧移动 位置控制
-    _frameMoveForTransform() {
-        // 每次移动一个虚拟单位都是一个地图单位(这里指的是瓦片)的大小
-        // 因为人物和瓦片的单位像素大小不一样 所以需要赋初始偏移值 (这里大概是1.5瓦片大小)
-        this.gameObject.transform.position.x = this.curPos.x * TILE_WIDTH - 1.5 * TILE_WIDTH;
-        this.gameObject.transform.position.y = this.curPos.y * TILE_HEIGHT - 1.5 * TILE_HEIGHT;
-    }
-
-    get direction() {
-        return this.direction_;
-    }
-
-    set direction(direction: DIRECTION) {
-        this.direction_ = direction;
-        this.fsm?.setParams(FSM_STATE.DIRECTION, direction);
-    }
-
-    get state() {
-        return this.state_;
-    }
-
-    set state(nextState: FSM_STATE) {
-        this.state_ = nextState;
-        this.fsm?.setParams(nextState, true);
-    }
 }

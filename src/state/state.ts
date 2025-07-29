@@ -74,3 +74,11 @@ export interface IState {
     run(): void;
 }
 
+// 参数值类型
+export type IParamsValue = number | boolean;
+
+// 状态机参数
+export interface IParams {
+    type: FSM_PARAM_TYPE;
+    value: IParamsValue;
+}

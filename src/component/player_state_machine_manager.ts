@@ -1,41 +1,27 @@
-import { Component } from "@eva/eva.js";
 import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
 
 import { DIRECTION } from "../enum";
 import { IdleState } from "../state/idle_state";
 import { TurnLeftState } from "../state/turn_left_state";
+import { FSM_PARAM_TYPE, FSM_STATE } from "../state/state";
 import { TurnRightState } from "../state/turn_right_state";
 import { BlockBackState } from "../state/block_back_state";
-import { BlockFrontState } from "../state/block_front_state";
 import { BlockLeftState } from "../state/block_left_state";
+import { BlockFrontState } from "../state/block_front_state";
 import { BlockRightState } from "../state/block_right_state";
-import { FSM_PARAM_TYPE, FSM_STATE, IState } from "../state/state";
 import { BlockTurnLeftState } from "../state/block_turn_left_state";
 import { BlockTurnRightState } from "../state/block_turn_right._state";
+import { StateMachineComponent } from "../base/state_machine_component";
 
 // 帧动画速度
 const ANIMATION_SPEED = 1000 / 8;
 
-// 参数值类型
-type IParamsValue = number | boolean;
-
-// 状态机参数
-interface IParams {
-    type: FSM_PARAM_TYPE;
-    value: IParamsValue;
-}
-
 /** 角色有限状态机管理器 */
-export class PlayerStateMachineManager extends Component {
+export class PlayerStateMachineManager extends StateMachineComponent {
     /** 设置组件名称 */
     static componentName = "PlayerStateMachineManager";
 
-    /** 状态机参数表 */
-    private params: Map<FSM_STATE, IParams> = new Map();
-    /** 状态机行为表 表示一个状态对应的一个完整行为 */
-    private states: Map<FSM_STATE, IState> = new Map();
-    /** 当前状态 */
-    private curState_: FSM_STATE = FSM_STATE.NONE;
+    constructor() { super(); }
 
     /** 初始化 */
     init() {
@@ -58,21 +44,6 @@ export class PlayerStateMachineManager extends Component {
         this.initStates();
         // 初始化帧动画事件
         this.initAnimationEvent();
-    }
-
-    /** 获取当前状态 */
-    get curState() {
-        return this.curState_;
-    }
-
-    /** 设置下一个状态 */
-    set curState(nextState: FSM_STATE) {
-        this.curState_ = nextState;
-        const state = this.states.get(nextState);
-        // 执行状态
-        if (state) {
-            state.run();
-        }
     }
 
     /** 初始化参数表 */
@@ -146,37 +117,9 @@ export class PlayerStateMachineManager extends Component {
         });
     }
 
-    /** 获取状态参数 */
-    getParams(state: FSM_STATE) {
-        return this.params.get(state) || null;
-    }
-
-    /** 设置状态参数 */
-    setParams(state: FSM_STATE, paramsVal: IParamsValue) {
-        if (this.params.has(state)) {
-            const params = this.params.get(state);
-            if (params) {
-                params.value = paramsVal;
-            }
-            this.execute();
-            this.tryRecoverParams();
-        }
-    }
-
-    /** 恢复状态参数 */
-    tryRecoverParams() {
-        this.params.forEach((value) => {
-            switch (value.type) {
-                /** 参数类型为信号类 触发后应该恢复 */
-                case FSM_PARAM_TYPE.SIGNAL:
-                    value.value = false;
-                    break;
-            }
-        });
-    }
-
     /** 执行状态 */
     execute() {
+        console.log("执行当前状态: ", this.curState);
         switch (this.curState) {
             case FSM_STATE.IDLE:
             case FSM_STATE.TURN_LEFT:

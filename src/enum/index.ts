@@ -20,8 +20,15 @@ export enum GAMEOBJ_TYPE {
     TILE = 'TILE',
     // 角色
     CHARACTER = 'CHARACTER',
+    // 木骷髅
+    WOODEN_SKELETON = "WOODEN_SKELETON",
     // 战斗场景
     BATTLE_SCENE = 'BATTLE_SCENE',
+}
+
+// 实体类型枚举
+export enum ENTITY_TYPE_ENUM {
+    PLAYER = "PLAYER",
 }
 
 // 按钮类型

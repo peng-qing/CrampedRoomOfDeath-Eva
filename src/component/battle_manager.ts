@@ -12,7 +12,7 @@ export class BattleManager extends Component {
     static componentName = "BattleManager"; // 设置组件名称
 
     /** 当前关卡数据 */
-    private level: ILevel = { mapInfo: [] };
+    private level: ILevel | null = null;
 
     /** 构造函数 */
     constructor() { super(); }
@@ -99,6 +99,10 @@ export class BattleManager extends Component {
     /** 生成玩家对象 */
     generatePlayer() {
         // 拿到地图对象 挂载玩家对象
-        this.gameObject.addChild(Player());
+        const player = this.level?.player;
+        if (!player) {
+            throw new Error("Invalid level data player not exist");
+        }
+        this.gameObject.addChild(Player(player));
     }
 }

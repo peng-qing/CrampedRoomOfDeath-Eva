@@ -10,8 +10,6 @@ import { PlayerStateMachineManager } from "../component/player_state_machine_man
 export abstract class SubState implements IState {
     /** 子状态机状态表 */
     states: Map<FSM_STATE, IState> = new Map();
-    /** 当前状态 */
-    curState_: FSM_STATE = FSM_STATE.NONE;
     /** 状态机管理器 */
     fsm: PlayerStateMachineManager;
     /** 帧动画组件 */
@@ -22,14 +20,6 @@ export abstract class SubState implements IState {
     constructor(fsm: PlayerStateMachineManager) {
         this.fsm = fsm;
         this.frameAnimation = fsm.gameObject.getComponent(SpriteAnimation.componentName);
-    }
-
-    get curState() {
-        return this.curState_;
-    }
-
-    set curState(state: FSM_STATE) {
-        this.curState_ = state;
     }
 
     /** 状态执行 */

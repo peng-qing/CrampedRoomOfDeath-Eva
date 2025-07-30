@@ -2,17 +2,17 @@ import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
 
 import { DIRECTION } from "../enum";
 import { ANIMATION_SPEED } from "../base";
-import { IdleState } from "../state/idle_state";
-import { TurnLeftState } from "../state/turn_left_state";
 import { FSM_PARAM_TYPE, FSM_STATE } from "../state/state";
-import { TurnRightState } from "../state/turn_right_state";
-import { BlockBackState } from "../state/block_back_state";
-import { BlockLeftState } from "../state/block_left_state";
-import { BlockFrontState } from "../state/block_front_state";
-import { BlockRightState } from "../state/block_right_state";
-import { BlockTurnLeftState } from "../state/block_turn_left_state";
-import { BlockTurnRightState } from "../state/block_turn_right._state";
+import { PlayerIdleState } from "../state/player/player_idle_state";
 import { StateMachineComponent } from "../base/state_machine_component";
+import { PlayerTurnLeftState } from "../state/player/player_turn_left_state";
+import { PlayerTurnRightState } from "../state/player/player_turn_right_state";
+import { PlayerBlockBackState } from "../state/player/player_block_back_state";
+import { PlayerBlockLeftState } from "../state/player/player_block_left_state";
+import { PlayerBlockFrontState } from "../state/player/player_block_front_state";
+import { PlayerBlockRightState } from "../state/player/player_block_right_state";
+import { PlayerBlockTurnLeftState } from "../state/player/player_block_turn_left_state";
+import { PlayerBlockTurnRightState } from "../state/player/player_block_turn_right_state";
 
 /** 角色有限状态机管理器 */
 export class PlayerStateMachineManager extends StateMachineComponent {
@@ -74,23 +74,23 @@ export class PlayerStateMachineManager extends StateMachineComponent {
     /** 初始化状态表 */
     initStates() {
         // 空闲
-        this.states.set(FSM_STATE.IDLE, new IdleState(this));
+        this.states.set(FSM_STATE.IDLE, new PlayerIdleState(this));
         // 左转
-        this.states.set(FSM_STATE.TURN_LEFT, new TurnLeftState(this));
+        this.states.set(FSM_STATE.TURN_LEFT, new PlayerTurnLeftState(this));
         // 右转
-        this.states.set(FSM_STATE.TURN_RIGHT, new TurnRightState(this));
+        this.states.set(FSM_STATE.TURN_RIGHT, new PlayerTurnRightState(this));
         // 前向碰撞
-        this.states.set(FSM_STATE.BLOCK_FRONT, new BlockFrontState(this));
+        this.states.set(FSM_STATE.BLOCK_FRONT, new PlayerBlockFrontState(this));
         // 后向碰撞
-        this.states.set(FSM_STATE.BLOCK_BACK, new BlockBackState(this));
+        this.states.set(FSM_STATE.BLOCK_BACK, new PlayerBlockBackState(this));
         // 左侧碰撞
-        this.states.set(FSM_STATE.BLOCK_LEFT, new BlockLeftState(this));
+        this.states.set(FSM_STATE.BLOCK_LEFT, new PlayerBlockLeftState(this));
         // 右侧碰撞
-        this.states.set(FSM_STATE.BLOCK_RIGHT, new BlockRightState(this));
+        this.states.set(FSM_STATE.BLOCK_RIGHT, new PlayerBlockRightState(this));
         // 左转向碰撞
-        this.states.set(FSM_STATE.BLOCK_TURN_LEFT, new BlockTurnLeftState(this));
+        this.states.set(FSM_STATE.BLOCK_TURN_LEFT, new PlayerBlockTurnLeftState(this));
         // 右转向碰撞
-        this.states.set(FSM_STATE.BLOCK_TURN_RIGHT, new BlockTurnRightState(this));
+        this.states.set(FSM_STATE.BLOCK_TURN_RIGHT, new PlayerBlockTurnRightState(this));
     }
 
     /** 初始化帧动画事件 */

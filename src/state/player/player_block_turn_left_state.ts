@@ -1,11 +1,11 @@
-import { DIRECTION } from "../enum";
-import { FSM_STATE } from "./state";
-import { SubState } from "./multi_state";
-import { FrameAnimationState } from "./frame_animation_state";
-import { StateMachineComponent } from "../base/state_machine_component";
+import { FSM_STATE } from "../state";
+import { DIRECTION } from "../../enum";
+import { SubState } from "../multi_state";
+import { FrameAnimationState } from "../frame_animation_state";
+import { StateMachineComponent } from "../../base/state_machine_component";
 
 // 待机状态 继承自子状态机
-export class BlockTurnLeftState extends SubState {
+export class PlayerBlockTurnLeftState extends SubState {
     constructor(fsm: StateMachineComponent) {
         super(fsm);
         this.init();

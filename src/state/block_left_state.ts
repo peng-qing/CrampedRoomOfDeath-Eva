@@ -2,11 +2,11 @@ import { DIRECTION } from "../enum";
 import { FSM_STATE } from "./state";
 import { SubState } from "./multi_state";
 import { FrameAnimationState } from "./frame_animation_state";
-import { PlayerStateMachineManager } from "../component/player_state_machine_manager";
+import { StateMachineComponent } from "../base/state_machine_component";
 
 // 待机状态 继承自子状态机
 export class BlockLeftState extends SubState {
-    constructor(fsm: PlayerStateMachineManager) {
+    constructor(fsm: StateMachineComponent) {
         super(fsm);
         this.init();
     }

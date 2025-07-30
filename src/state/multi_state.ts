@@ -2,7 +2,7 @@
 import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
 
 import { IState, FSM_STATE } from "./state";
-import { PlayerStateMachineManager } from "../component/player_state_machine_manager";
+import { StateMachineComponent } from "../base/state_machine_component";
 
 // 子状态机 多状态管理 管理一些相似的子状态集 避免顶层状态机过于臃肿
 // 可以理解为一个状态对应一个状态机
@@ -11,13 +11,13 @@ export abstract class SubState implements IState {
     /** 子状态机状态表 */
     states: Map<FSM_STATE, IState> = new Map();
     /** 状态机管理器 */
-    fsm: PlayerStateMachineManager;
+    fsm: StateMachineComponent;
     /** 帧动画组件 */
     frameAnimation: SpriteAnimation;
 
 
     /** 构造函数 */
-    constructor(fsm: PlayerStateMachineManager) {
+    constructor(fsm: StateMachineComponent) {
         this.fsm = fsm;
         this.frameAnimation = fsm.gameObject.getComponent(SpriteAnimation.componentName);
     }

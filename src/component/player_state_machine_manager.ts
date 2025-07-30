@@ -1,6 +1,7 @@
 import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
 
 import { DIRECTION } from "../enum";
+import { ANIMATION_SPEED } from "../base";
 import { IdleState } from "../state/idle_state";
 import { TurnLeftState } from "../state/turn_left_state";
 import { FSM_PARAM_TYPE, FSM_STATE } from "../state/state";
@@ -12,9 +13,6 @@ import { BlockRightState } from "../state/block_right_state";
 import { BlockTurnLeftState } from "../state/block_turn_left_state";
 import { BlockTurnRightState } from "../state/block_turn_right._state";
 import { StateMachineComponent } from "../base/state_machine_component";
-
-// 帧动画速度
-const ANIMATION_SPEED = 1000 / 8;
 
 /** 角色有限状态机管理器 */
 export class PlayerStateMachineManager extends StateMachineComponent {
@@ -119,7 +117,6 @@ export class PlayerStateMachineManager extends StateMachineComponent {
 
     /** 执行状态 */
     execute() {
-        console.log("执行当前状态: ", this.curState);
         switch (this.curState) {
             case FSM_STATE.IDLE:
             case FSM_STATE.TURN_LEFT:

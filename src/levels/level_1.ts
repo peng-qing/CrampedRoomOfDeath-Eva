@@ -431,16 +431,28 @@ const MapInfo = [
     ],
 ];
 
+// 玩家出生点
 const Player: IEntity = {
     x: 2,
     y: 8,
     direction: DIRECTION.TOP,
     state: FSM_STATE.IDLE,
     type: ENTITY_TYPE_ENUM.PLAYER,
-}
+};
 
+// 敌人出生点
+const EnemyList: IEntity[] = [
+    {
+        x: 7,
+        y: 6,
+        direction: DIRECTION.TOP,
+        state: FSM_STATE.IDLE,
+        type: ENTITY_TYPE_ENUM.WOODEN_SKELETON,
+    }
+];
 
 export default {
     mapInfo: MapInfo,
     player: Player,
+    enemyList: EnemyList,
 }

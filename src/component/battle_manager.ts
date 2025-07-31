@@ -7,6 +7,7 @@ import { EventManager } from "../managers/event_manager";
 import { Player } from "../scenes/battle/game_object/player";
 import { TileMap } from "../scenes/battle/game_object/tile_map";
 import { GlobalDataManager } from "../managers/global_data_manager";
+import { WoodenSkeleton } from "../scenes/battle/game_object/wooden_skeleton";
 
 export class BattleManager extends Component {
     static componentName = "BattleManager"; // 设置组件名称
@@ -57,6 +58,8 @@ export class BattleManager extends Component {
         this.generateTileMap();
         // 生成玩家对象
         this.generatePlayer();
+        // 生成敌人
+        this.generateEnemyList();
     }
 
     /** 清除上一关数据 */
@@ -104,5 +107,17 @@ export class BattleManager extends Component {
             throw new Error("Invalid level data player not exist");
         }
         this.gameObject.addChild(Player(player));
+    }
+
+    /** 生成敌人列表 */
+    generateEnemyList() {
+        // 拿到地图的敌人列表配置
+        const enemyList = this.level?.enemyList;
+        if (!enemyList || !Array.isArray(enemyList) || enemyList.length <= 0) {
+            throw new Error("Invalid level data enemy list not exist");
+        }
+        for (const enemy of enemyList) {
+            this.gameObject.addChild(WoodenSkeleton(enemy));
+        }
     }
 }

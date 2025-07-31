@@ -571,7 +571,66 @@ export default [
         },
         type: RESOURCE_TYPE.SPRITE_ANIMATION
     },
-
+    {
+        name: "woodenskeleton_idle_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/idle_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/idle_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_idle_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/idle_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/idle_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_idle_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/idle_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/idle_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_idle_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/idle_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/idle_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    }
 
     // {
     //     name: "burst_attack",
@@ -1421,64 +1480,5 @@ export default [
     //     },
     //     type: RESOURCE_TYPE.SPRITE_ANIMATION
     // },
-    // {
-    //     name: "woodenskeleton_idle_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/idle_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/idle_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_idle_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/idle_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/idle_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_idle_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/idle_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/idle_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_idle_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/idle_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/idle_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // }
+
 ]

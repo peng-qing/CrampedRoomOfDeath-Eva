@@ -29,6 +29,7 @@ export enum GAMEOBJ_TYPE {
 // 实体类型枚举
 export enum ENTITY_TYPE_ENUM {
     PLAYER = "PLAYER",
+    WOODEN_SKELETON = "WOODEN_SKELETON",
 }
 
 // 按钮类型

@@ -21,6 +21,7 @@ export interface IEntity {
 export interface ILevel {
     mapInfo: ITile[][];
     player: IEntity;
+    enemyList: IEntity[];
 }
 
 // 统一导出关卡数据

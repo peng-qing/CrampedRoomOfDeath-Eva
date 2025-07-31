@@ -1,5 +1,6 @@
 import { GameObject } from "@eva/eva.js";
 
+import { IEntity } from "../../../levels";
 import { CHARACTER_HEIGHT, CHARACTER_WIDTH, GAMEOBJ_TYPE } from "../../../enum";
 import { WoodenSkeletonManager } from "../../../component/wooden_skeleton_manager";
 
@@ -9,7 +10,7 @@ import { WoodenSkeletonManager } from "../../../component/wooden_skeleton_manage
  * 这里可以使用 SpriteAnimation 来处理 实际使用往往需要使用状态机控制管理
  * @returns 
  */
-export const WoodenSkeleton = () => {
+export const WoodenSkeleton = (entity: IEntity) => {
     const enemy = new GameObject(GAMEOBJ_TYPE.WOODEN_SKELETON, {
         size: {
             width: CHARACTER_WIDTH,
@@ -17,7 +18,7 @@ export const WoodenSkeleton = () => {
         }
     });
 
-    enemy.addComponent(new WoodenSkeletonManager());
+    enemy.addComponent(new WoodenSkeletonManager(entity));
 
     return enemy;
 }

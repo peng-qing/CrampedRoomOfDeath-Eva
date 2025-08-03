@@ -630,7 +630,67 @@ export default [
             }
         },
         type: RESOURCE_TYPE.SPRITE_ANIMATION
-    }
+    },    
+    {
+        name: "woodenskeleton_attack_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/attack_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/attack_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_attack_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/attack_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/attack_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_attack_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/attack_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/attack_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "woodenskeleton_attack_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/woodenskeleton/attack_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/woodenskeleton/attack_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
 
     // {
     //     name: "burst_attack",
@@ -1360,66 +1420,6 @@ export default [
     //     type: RESOURCE_TYPE.SPRITE_ANIMATION
     // },
 
-    // {
-    //     name: "woodenskeleton_attack_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/attack_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/attack_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_attack_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/attack_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/attack_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_attack_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/attack_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/attack_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "woodenskeleton_attack_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/woodenskeleton/attack_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/woodenskeleton/attack_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
     // {
     //     name: "woodenskeleton_death_bottom",
     //     preload: true,

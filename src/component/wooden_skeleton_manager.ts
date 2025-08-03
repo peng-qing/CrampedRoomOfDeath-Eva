@@ -13,6 +13,8 @@ export class WoodenSkeletonManager extends EntityComponent {
 
     /** 移动速度 */
     readonly speed: number = 0;
+    readonly attackRange: number = 1;
+
     constructor(entity: IEntity) { super(entity); }
 
     // 生命周期函数 初始化
@@ -26,6 +28,10 @@ export class WoodenSkeletonManager extends EntityComponent {
         EventManager.instance.register(EVENT_TYPE.PLAYER_MOVE_END, this.onPlayerMoveEnd, this);
     }
 
+    /**
+     * 玩家移动结束
+     * @param pos 结束时所在的位置 
+     */
     onPlayerMoveEnd(pos: IPos) {
         const { x: playerX, y: playerY } = pos;
         const { x: selfX, y: selfY } = this.curPos;
@@ -55,6 +61,29 @@ export class WoodenSkeletonManager extends EntityComponent {
         }
         else {
             console.log(`[WoodenSkeletonManager] onPlayerMoveEnd calc target direction error, targetPos:(${distanceX},${distanceY}), selfPos:(${selfX},${selfY}), playerPos:(${playerX},${playerY})`);
+        }
+        // 触发攻击
+        this.onAttack(pos);
+    }
+
+    /**
+     * 触发木骷髅攻击玩家
+     * @param pos 
+     */
+    onAttack(pos: IPos) {
+        const { x: playerX, y: playerY } = pos;
+        const { x: selfX, y: selfY } = this.curPos;
+
+        // 玩家在其上下左右四个方向且在其攻击范围内 触发攻击
+        // 如果是判断圆形攻击范围 应该是以木骷髅为圆心 其攻击范围为半径的圆 来判断
+        // 这里值判断上下左右动画
+        const distanceX = Math.abs(playerX - selfX);
+        const distanceY = Math.abs(playerY - selfY);
+        if ((distanceX <= 0 && distanceY <= 1) || (distanceY <= 0 && distanceX <= 1)) {
+            this.fsm?.setParams(FSM_STATE.ATTACK, true);
+        }
+        else {
+            this.fsm?.setParams(FSM_STATE.IDLE, true);
         }
     }
 }

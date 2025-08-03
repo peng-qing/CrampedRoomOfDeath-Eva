@@ -28,7 +28,7 @@ export class EntityComponent extends Component {
     /** 移动速度 */
     speed: number = 0;
     /** 是否处于移动中 */
-    isMoving: boolean = false;
+    private isMoving_: boolean = false;
     /** 实体朝向 */
     private direction_: DIRECTION = DIRECTION.TOP;
     /** 状态 */
@@ -125,5 +125,26 @@ export class EntityComponent extends Component {
         if (this.fsm) {
             this.fsm?.setParams(FSM_STATE.DIRECTION, this.direction_);
         }
+    }
+
+    /** 当前是否移动中 */
+    get isMoving() {
+        return this.isMoving_;
+    }
+
+    /** 设置当前是否移动 */
+    set isMoving(isMoving_: boolean) {
+        if (this.isMoving_ === isMoving_) {
+            return;
+        }
+        this.isMoving_ = isMoving_;
+        this.onMoveChanged(isMoving_);
+    }
+
+    /**
+     * 移动状态发生改变
+     * @param isMoving 变化后的移动状态
+     */
+    onMoveChanged(isMoving: boolean) {
     }
 }

@@ -532,4 +532,16 @@ export class PlayerManager extends EntityComponent {
         }
     }
 
+    /**
+     * 玩家移动状态改变
+     * @param isMoving 
+     * @returns 
+     */
+    onMoveChanged(isMoving: boolean): void {
+        if (isMoving) {
+            return;
+        }
+        // 玩家移动到目标后 触发事件通知敌人状态机改变朝向
+        EventManager.instance.emit(EVENT_TYPE.PLAYER_MOVE_END, { x: this.targetPos.x, y: this.targetPos.y });
+    }
 }

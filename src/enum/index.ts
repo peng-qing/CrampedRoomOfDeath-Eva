@@ -60,6 +60,8 @@ export enum EVENT_TYPE {
     PLAYER_CONTROL = "PLAYER_CONTROL",
     // 进入下一关
     NEXT_LEVEL = "NEXT_LEVEL",
+    // 玩家移动结束
+    PLAYER_MOVE_END = "PLAYER_MOVE_END",
 }
 
 export const CHARACTER_WIDTH = 128;

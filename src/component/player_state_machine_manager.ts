@@ -2,15 +2,19 @@ import { SpriteAnimation } from "@eva/plugin-renderer-sprite-animation";
 
 import { DIRECTION } from "../enum";
 import { ANIMATION_SPEED } from "../base";
+import { PlayerManager } from "./player_manager";
 import { FSM_PARAM_TYPE, FSM_STATE } from "../state/state";
 import { PlayerIdleState } from "../state/player/player_idle_state";
+import { PlayerHurtState } from "../state/player/player_hurt_state";
 import { StateMachineComponent } from "../base/state_machine_component";
 import { PlayerTurnLeftState } from "../state/player/player_turn_left_state";
 import { PlayerTurnRightState } from "../state/player/player_turn_right_state";
 import { PlayerBlockBackState } from "../state/player/player_block_back_state";
 import { PlayerBlockLeftState } from "../state/player/player_block_left_state";
+import { PlayerDeathTrapState } from "../state/player/player_death_trap_state";
 import { PlayerBlockFrontState } from "../state/player/player_block_front_state";
 import { PlayerBlockRightState } from "../state/player/player_block_right_state";
+import { PlayerDeathKilledState } from "../state/player/player_death_killed_state";
 import { PlayerBlockTurnLeftState } from "../state/player/player_block_turn_left_state";
 import { PlayerBlockTurnRightState } from "../state/player/player_block_turn_right_state";
 
@@ -56,6 +60,8 @@ export class PlayerStateMachineManager extends StateMachineComponent {
             FSM_STATE.BLOCK_RIGHT,          // 右侧碰撞
             FSM_STATE.BLOCK_TURN_LEFT,      // 左转碰撞
             FSM_STATE.BLOCK_TURN_RIGHT,     // 右转碰撞
+            FSM_STATE.DEATH_KILLED,          // 被击杀
+            FSM_STATE.DEATH_TRAP,            // 被陷阱杀死
         ];
         for (const state of signals) {
             this.params.set(state, {
@@ -91,6 +97,12 @@ export class PlayerStateMachineManager extends StateMachineComponent {
         this.states.set(FSM_STATE.BLOCK_TURN_LEFT, new PlayerBlockTurnLeftState(this));
         // 右转向碰撞
         this.states.set(FSM_STATE.BLOCK_TURN_RIGHT, new PlayerBlockTurnRightState(this));
+        // 被击杀
+        this.states.set(FSM_STATE.DEATH_KILLED, new PlayerDeathKilledState(this));
+        // 被陷阱杀死
+        this.states.set(FSM_STATE.DEATH_TRAP, new PlayerDeathTrapState(this));
+        // 受到攻击
+        this.states.set(FSM_STATE.ATTACK, new PlayerHurtState(this));
     }
 
     /** 初始化帧动画事件 */
@@ -110,7 +122,7 @@ export class PlayerStateMachineManager extends StateMachineComponent {
                 FSM_STATE.BLOCK_TURN_RIGHT,
             ];
             if (recoverIdle.includes(this.curState)) {
-                this.curState = FSM_STATE.IDLE;
+                this.gameObject.getComponent<PlayerManager>(PlayerManager.componentName).state = FSM_STATE.IDLE;
             };
         });
     }
@@ -127,8 +139,16 @@ export class PlayerStateMachineManager extends StateMachineComponent {
             case FSM_STATE.BLOCK_RIGHT:
             case FSM_STATE.BLOCK_TURN_LEFT:
             case FSM_STATE.BLOCK_TURN_RIGHT:
+            case FSM_STATE.DEATH_KILLED:
+            case FSM_STATE.DEATH_TRAP:
                 if (this.params.get(FSM_STATE.TURN_LEFT)?.value) {
                     this.curState = FSM_STATE.TURN_LEFT;
+                }
+                else if (this.params.get(FSM_STATE.DEATH_KILLED)?.value) {
+                    this.curState = FSM_STATE.DEATH_KILLED;
+                }
+                else if (this.params.get(FSM_STATE.DEATH_TRAP)?.value) {
+                    this.curState = FSM_STATE.DEATH_TRAP;
                 }
                 else if (this.params.get(FSM_STATE.TURN_RIGHT)?.value) {
                     this.curState = FSM_STATE.TURN_RIGHT;

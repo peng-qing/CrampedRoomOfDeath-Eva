@@ -438,6 +438,9 @@ const Player: IEntity = {
     direction: DIRECTION.TOP,
     state: FSM_STATE.IDLE,
     type: ENTITY_TYPE_ENUM.PLAYER,
+    attack: 1,
+    defense: 0,
+    maxHp: 1,
 };
 
 // 敌人出生点
@@ -448,6 +451,9 @@ const EnemyList: IEntity[] = [
         direction: DIRECTION.TOP,
         state: FSM_STATE.IDLE,
         type: ENTITY_TYPE_ENUM.WOODEN_SKELETON,
+        attack: 1,
+        defense: 0,
+        maxHp: 1,
     }
 ];
 

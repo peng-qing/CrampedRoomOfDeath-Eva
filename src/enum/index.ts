@@ -62,6 +62,10 @@ export enum EVENT_TYPE {
     NEXT_LEVEL = "NEXT_LEVEL",
     // 玩家移动结束
     PLAYER_MOVE_END = "PLAYER_MOVE_END",
+    // 玩家被攻击
+    PLAYER_ATTACKED = "PLAYER_ATTACKED",
+    // 玩家死亡
+    PLAYER_DEATH = "PLAYER_DEATH",
 }
 
 export const CHARACTER_WIDTH = 128;
@@ -102,4 +106,12 @@ export enum DIRECTION {
     RIGHT = 2,
     TOP = 3,
     BOTTOM = 4,
+}
+
+// 死亡原因
+export enum DEATH_REASON {
+    // 攻击
+    ATTACK = "ATTACK",
+    // 陷阱
+    TRAP = "TRAP",
 }

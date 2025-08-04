@@ -630,7 +630,7 @@ export default [
             }
         },
         type: RESOURCE_TYPE.SPRITE_ANIMATION
-    },    
+    },
     {
         name: "woodenskeleton_attack_bottom",
         preload: true,
@@ -687,6 +687,126 @@ export default [
             json: {
                 type: "json",
                 url: "./static/assets/woodenskeleton/attack_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_death_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/death_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/death_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_death_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/death_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/death_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_death_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/death_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/death_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_death_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/death_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/death_top.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_air_death_bottom",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/air_death_bottom.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/air_death_bottom.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_air_death_left",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/air_death_left.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/air_death_left.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_air_death_right",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/air_death_right.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/air_death_right.json"
+            }
+        },
+        type: RESOURCE_TYPE.SPRITE_ANIMATION
+    },
+    {
+        name: "player_air_death_top",
+        preload: true,
+        src: {
+            image: {
+                type: "png",
+                url: "./static/assets/player/air_death_top.png"
+            },
+            json: {
+                type: "json",
+                url: "./static/assets/player/air_death_top.json"
             }
         },
         type: RESOURCE_TYPE.SPRITE_ANIMATION
@@ -902,66 +1022,7 @@ export default [
     //     },
     //     type: RESOURCE_TYPE.SPRITE_ANIMATION
     // },
-    // {
-    //     name: "player_air_death_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/air_death_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/air_death_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_air_death_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/air_death_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/air_death_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_air_death_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/air_death_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/air_death_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_air_death_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/air_death_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/air_death_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
+
     // {
     //     name: "player_attack_bottom",
     //     preload: true,
@@ -1026,66 +1087,7 @@ export default [
 
 
 
-    // {
-    //     name: "player_death_bottom",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/death_bottom.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/death_bottom.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_death_left",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/death_left.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/death_left.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_death_right",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/death_right.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/death_right.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
-    // {
-    //     name: "player_death_top",
-    //     preload: true,
-    //     src: {
-    //         image: {
-    //             type: "png",
-    //             url: "./static/assets/player/death_top.png"
-    //         },
-    //         json: {
-    //             type: "json",
-    //             url: "./static/assets/player/death_top.json"
-    //         }
-    //     },
-    //     type: RESOURCE_TYPE.SPRITE_ANIMATION
-    // },
+
 
 
 

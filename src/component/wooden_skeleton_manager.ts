@@ -1,9 +1,9 @@
 import { IPos } from "../base";
 import { IEntity } from "../levels";
 import { FSM_STATE } from "../state/state";
-import { DIRECTION, EVENT_TYPE } from "../enum";
 import { EventManager } from "../managers/event_manager";
 import { EntityComponent } from "../base/entity_component";
+import { DIRECTION, EVENT_TYPE, DEATH_REASON } from "../enum";
 import { WoodenskeletonStateMachineManager } from "../component/wooden_skeleton_state_machine_manager";
 
 // 木骷髅管理器
@@ -26,6 +26,16 @@ export class WoodenSkeletonManager extends EntityComponent {
         super.init(entity);
 
         EventManager.instance.register(EVENT_TYPE.PLAYER_MOVE_END, this.onPlayerMoveEnd, this);
+        EventManager.instance.register(EVENT_TYPE.PLAYER_DEATH, this.onPlayerDeath, this);
+    }
+
+    // 玩家被击杀
+    onPlayerDeath(reason: DEATH_REASON, uuid: number | undefined) {
+        if (reason !== DEATH_REASON.ATTACK || uuid !== this.uuid) {
+            return;
+        }
+        // 被我击杀了 恢复成 idle
+        this.fsm?.setParams(FSM_STATE.IDLE, true);
     }
 
     /**
@@ -81,6 +91,8 @@ export class WoodenSkeletonManager extends EntityComponent {
         const distanceY = Math.abs(playerY - selfY);
         if ((distanceX <= 0 && distanceY <= 1) || (distanceY <= 0 && distanceX <= 1)) {
             this.fsm?.setParams(FSM_STATE.ATTACK, true);
+            // 通知玩家被攻击 并传入攻击方的uuid 和 攻击力
+            EventManager.instance.emit(EVENT_TYPE.PLAYER_ATTACKED, { attacker: this.uuid, attack: this.attack });
         }
         else {
             this.fsm?.setParams(FSM_STATE.IDLE, true);

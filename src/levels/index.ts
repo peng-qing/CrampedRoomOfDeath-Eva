@@ -15,6 +15,9 @@ export interface IEntity {
     direction: DIRECTION.TOP,
     state: FSM_STATE,
     type: ENTITY_TYPE_ENUM,
+    attack: number,
+    defense: number,
+    maxHp: number,
 }
 
 // 关卡接口数据

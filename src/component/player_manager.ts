@@ -2,9 +2,9 @@ import { IEntity } from "../levels";
 import { FSM_STATE } from "../state/state";
 import { EventManager } from "../managers/event_manager";
 import { EntityComponent } from "../base/entity_component";
-import { EVENT_TYPE, BUTTON_ACTION, DIRECTION } from "../enum";
 import { GlobalDataManager } from "../managers/global_data_manager";
 import { PlayerStateMachineManager } from "./player_state_machine_manager";
+import { EVENT_TYPE, BUTTON_ACTION, DIRECTION, DEATH_REASON } from "../enum";
 
 // 玩家管理器
 export class PlayerManager extends EntityComponent {
@@ -26,11 +26,45 @@ export class PlayerManager extends EntityComponent {
         super.init(entity);
         // 绑定移动事件
         EventManager.instance.register(EVENT_TYPE.PLAYER_CONTROL, this.onInput, this);
+        EventManager.instance.register(EVENT_TYPE.PLAYER_ATTACKED, this.onAttacked, this);
+        EventManager.instance.register(EVENT_TYPE.PLAYER_DEATH, this.onDeath, this);
+    }
+
+    // 玩家死亡
+    onDeath(reason: DEATH_REASON, uuid: number | undefined) {
+        if (reason === DEATH_REASON.TRAP) {
+            // 被陷阱死亡
+            this.state = FSM_STATE.DEATH_TRAP;
+            return;
+        }
+        // 被攻击死亡
+        this.state = FSM_STATE.DEATH_KILLED;
+    }
+
+    // 玩家被攻击
+    onAttacked({ attacker, attack }: { attacker: number, attack: number }) {
+        if (this.state === FSM_STATE.DEATH_KILLED || this.state === FSM_STATE.DEATH_TRAP) {
+            // 已经死亡
+            return;
+        }
+        const demage = attack - this.defense < 0 ? 0 : attack - this.defense;
+        this.curHp -= demage;
+        if (this.curHp <= 0) {
+            // 死亡
+            EventManager.instance.emit(EVENT_TYPE.PLAYER_DEATH, DEATH_REASON.ATTACK, attacker);
+            return;
+        }
+        // 播放受击动画 比如伤害飘字
+        this.state = FSM_STATE.HURT;
     }
 
     // 处理用户输入
     onInput(btnAction: BUTTON_ACTION) {
         if (this.willBlockControl(btnAction)) {
+            return;
+        }
+        if (this.state === FSM_STATE.DEATH_KILLED || this.state === FSM_STATE.DEATH_TRAP) {
+            // 已经死亡
             return;
         }
         this.move(btnAction);

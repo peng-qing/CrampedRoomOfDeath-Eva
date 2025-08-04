@@ -35,6 +35,16 @@ export class EntityComponent extends Component {
     private state_: FSM_STATE = FSM_STATE.IDLE;
     /** 状态机 */
     fsm: StateMachineComponent | undefined;
+    /** 攻击范围 */
+    attackRange: number = 1;
+    /** 血量 */
+    maxHp: number = 1;
+    /** 当前血量 */
+    curHp: number = 1;
+    /** 攻击力 */
+    attack: number = 1;
+    /** 防御力 */
+    defense: number = 1;
 
     /** 构造函数 */
     constructor(entity: IEntity) {
@@ -47,6 +57,10 @@ export class EntityComponent extends Component {
      * @param entity 实体初始化书
      */
     init(entity: IEntity): void {
+        this.attack = entity.attack;
+        this.defense = entity.defense;
+        this.maxHp = entity.maxHp;
+        this.curHp = entity.maxHp;
         this.curPos = {
             x: entity.x,
             y: entity.y,
